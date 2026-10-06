@@ -1,0 +1,297 @@
+{
+ "args": {
+  "task": "iterop_diam_a0.3",
+  "family": "rgg_d2",
+  "bias_family": "rgg_d2_deg4",
+  "seeds": 3,
+  "quick": false,
+  "hidden_dim": 128,
+  "n_train": 200,
+  "n_adapt": 500,
+  "device": "cuda"
+ },
+ "runs": [
+  {
+   "seed": 0,
+   "k_adapt": 8,
+   "probes": {
+    "500": {
+     "tier1": {
+      "epsB_mean": 0.012619012598103533,
+      "risk_at_Tstar": 0.002496145423121023
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.010471421346058682,
+      "risk_at_Tstar": 0.0001318395483713393
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.010524954241191153,
+      "risk_at_Tstar": 0.00018402000824790875
+     },
+     "ft_biased": {
+      "epsB_mean": 0.013245207846921403,
+      "risk_at_Tstar": 0.0023471303819978355
+     },
+     "fs_biased": {
+      "epsB_mean": 0.013086407395652108,
+      "risk_at_Tstar": 0.0018673535100805498
+     }
+    },
+    "2000": {
+     "tier1": {
+      "epsB_mean": 0.0080936690341332,
+      "risk_at_Tstar": 0.009722336135811659
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.006343058310812921,
+      "risk_at_Tstar": 0.001506475713401706
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.006361034484143602,
+      "risk_at_Tstar": 0.0013908357539546038
+     },
+     "ft_biased": {
+      "epsB_mean": 0.008097924182220596,
+      "risk_at_Tstar": 0.0052835749593583515
+     },
+     "fs_biased": {
+      "epsB_mean": 0.00775982031118474,
+      "risk_at_Tstar": 0.002509366916810708
+     }
+    },
+    "5000": {
+     "tier1": {
+      "epsB_mean": 0.0063763591059451475,
+      "risk_at_Tstar": 0.021293532335874086
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.004714105086569707,
+      "risk_at_Tstar": 0.008950425838107682
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.004613607525243424,
+      "risk_at_Tstar": 0.006861129257671579
+     },
+     "ft_biased": {
+      "epsB_mean": 0.006293310102874188,
+      "risk_at_Tstar": 0.01952615813031585
+     },
+     "fs_biased": {
+      "epsB_mean": 0.005608335023460877,
+      "risk_at_Tstar": 0.009927810988525122
+     }
+    },
+    "20000": {
+     "tier1": {
+      "epsB_mean": 0.006638465034753877,
+      "risk_at_Tstar": 0.08969167412363212
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.0052008727244457174,
+      "risk_at_Tstar": 0.07556136448382018
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.004709326965422844,
+      "risk_at_Tstar": 0.06932827104175014
+     },
+     "ft_biased": {
+      "epsB_mean": 0.006885122922001217,
+      "risk_at_Tstar": 0.09925380784544498
+     },
+     "fs_biased": {
+      "epsB_mean": 0.006172706477998334,
+      "risk_at_Tstar": 0.09643958796662931
+     }
+    }
+   }
+  },
+  {
+   "seed": 1,
+   "k_adapt": 8,
+   "probes": {
+    "500": {
+     "tier1": {
+      "epsB_mean": 0.016454987703279283,
+      "risk_at_Tstar": 0.002081107562235777
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.013387010207225103,
+      "risk_at_Tstar": 0.00014324302584030934
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.013439452784344516,
+      "risk_at_Tstar": 0.00019158498753900317
+     },
+     "ft_biased": {
+      "epsB_mean": 0.017060947247955482,
+      "risk_at_Tstar": 0.0032328526239339627
+     },
+     "fs_biased": {
+      "epsB_mean": 0.01666995270716143,
+      "risk_at_Tstar": 0.0020664881766823025
+     }
+    },
+    "2000": {
+     "tier1": {
+      "epsB_mean": 0.010620133324118796,
+      "risk_at_Tstar": 0.006298753654528319
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.008370805542654125,
+      "risk_at_Tstar": 0.0008501127398707293
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.008398879540982307,
+      "risk_at_Tstar": 0.0008430805209888343
+     },
+     "ft_biased": {
+      "epsB_mean": 0.010785290152125527,
+      "risk_at_Tstar": 0.0062289036065854165
+     },
+     "fs_biased": {
+      "epsB_mean": 0.010317866568948375,
+      "risk_at_Tstar": 0.0027732016353608376
+     }
+    },
+    "5000": {
+     "tier1": {
+      "epsB_mean": 0.007590371106775349,
+      "risk_at_Tstar": 0.01129668231310215
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.005815099293299838,
+      "risk_at_Tstar": 0.0036436163756921997
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.005809782001898415,
+      "risk_at_Tstar": 0.0029717429386962764
+     },
+     "ft_biased": {
+      "epsB_mean": 0.007599597473644876,
+      "risk_at_Tstar": 0.00991720886696923
+     },
+     "fs_biased": {
+      "epsB_mean": 0.00702193397115354,
+      "risk_at_Tstar": 0.0039013174374778795
+     }
+    },
+    "20000": {
+     "tier1": {
+      "epsB_mean": 0.0056263312775020795,
+      "risk_at_Tstar": 0.03557766547858319
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.003965898568788328,
+      "risk_at_Tstar": 0.023990169095956915
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.0038409161898016464,
+      "risk_at_Tstar": 0.01838671747817151
+     },
+     "ft_biased": {
+      "epsB_mean": 0.005364219896835965,
+      "risk_at_Tstar": 0.03278009527756385
+     },
+     "fs_biased": {
+      "epsB_mean": 0.004459419964944202,
+      "risk_at_Tstar": 0.02129568273416515
+     }
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "k_adapt": 8,
+   "probes": {
+    "500": {
+     "tier1": {
+      "epsB_mean": 0.013126032533667361,
+      "risk_at_Tstar": 0.0023026020424114176
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.010965236434761513,
+      "risk_at_Tstar": 0.00010981330169608498
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.010908205457477985,
+      "risk_at_Tstar": 0.0001693065802937405
+     },
+     "ft_biased": {
+      "epsB_mean": 0.013948760121517504,
+      "risk_at_Tstar": 0.0020223910363218723
+     },
+     "fs_biased": {
+      "epsB_mean": 0.013515081206908993,
+      "risk_at_Tstar": 0.0012951112376492662
+     }
+    },
+    "2000": {
+     "tier1": {
+      "epsB_mean": 0.007737481077492702,
+      "risk_at_Tstar": 0.0043060195527526305
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.006279305358293641,
+      "risk_at_Tstar": 0.00043465862174860007
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.006205099459657503,
+      "risk_at_Tstar": 0.0004901501908220646
+     },
+     "ft_biased": {
+      "epsB_mean": 0.007950440171407535,
+      "risk_at_Tstar": 0.0021076512287375128
+     },
+     "fs_biased": {
+      "epsB_mean": 0.007476952899378375,
+      "risk_at_Tstar": 0.0008213148983933308
+     }
+    },
+    "5000": {
+     "tier1": {
+      "epsB_mean": 0.005625456819965118,
+      "risk_at_Tstar": 0.0034311653854369735
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.004770545164476438,
+      "risk_at_Tstar": 0.00383152007769699
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.004596766491008096,
+      "risk_at_Tstar": 0.0033766682891696494
+     },
+     "ft_biased": {
+      "epsB_mean": 0.005728735318527846,
+      "risk_at_Tstar": 0.001932881461477948
+     },
+     "fs_biased": {
+      "epsB_mean": 0.0053629764016508924,
+      "risk_at_Tstar": 0.0027542785701154394
+     }
+    },
+    "20000": {
+     "tier1": {
+      "epsB_mean": 0.004461100379692788,
+      "risk_at_Tstar": 0.021346931738143685
+     },
+     "ft_unbiased": {
+      "epsB_mean": 0.004323425737244112,
+      "risk_at_Tstar": 0.02161573022235483
+     },
+     "fs_unbiased": {
+      "epsB_mean": 0.003796757866708773,
+      "risk_at_Tstar": 0.02148835828670371
+     },
+     "ft_biased": {
+      "epsB_mean": 0.004521932072950424,
+      "risk_at_Tstar": 0.022508425125215215
+     },
+     "fs_biased": {
+      "epsB_mean": 0.004402065823443182,
+      "risk_at_Tstar": 0.025881202066051025
+     }
+    }
+   }
+  }
+ ]
+}

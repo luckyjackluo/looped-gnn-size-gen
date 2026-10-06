@@ -1,0 +1,124 @@
+## Iterative-finetune-with-controller on REAL DEHNN MLCAD placement (placement regression).
+##
+## Warm-starts from the synthetic size-adaptation pretrain (N=0-500 packing_alg) and adapts it to
+## real FPGA placement crops by UNROLLING the frozen backbone K=6 times with a triple-FiLM loop
+## controller. Only the controller + decoder train; the pretrained GNN/transformer backbone is
+## frozen -- this is the "iterative finetune with controller" recipe applied across the synthetic ->
+## real domain gap (see scripts/dataset_analysis/compare_placement_distributions.py).
+##
+## Dataset: data/chipgen/dehnn_mlcad_split/{train,val} (design-level split; val = unseen netlists).
+## Build it first:  python scripts/dataset_generation/split_dehnn_train_val.py
+##
+## Architecture MUST match the pretrain checkpoint (same encoder input_dim / node_features, same
+## processor, edge_dim=4). Only loop_conditioning is added (new, zero-init).
+task: regression
+hidden_dim: 256
+output_dim: 2
+enforce_gnn_then_global: true
+conditioning_coords: ports_only
+loss_type: mse
+
+checkpoint: data/chipgen/checkpoints/size_adaptation/pretrain_baseline_0_500/best_model.pt
+reset_epochs_on_checkpoint: true
+force_decoder_trainable_on_finetune: false
+trainable_components:
+- loop_conditioner
+- decoder
+
+encoder:
+  type: mlp
+  input_dim: auto
+  coord_encoding_mode: raw
+  use_coord_fourier: false
+  use_pos_encoding: false
+  num_layers: 3
+  dropout: 0.0
+  use_layer_norm: true
+processor:
+  type: gnn
+  num_blocks: 3
+  layers_per_block: 3
+  layer_configs:
+  - layer_type: gatv2
+    heads: 4
+  - layer_type: gatv2
+    heads: 4
+  - layer_type: gatv2
+    heads: 4
+    concat: false
+  edge_dim: 4
+  dropout: 0.0
+  use_global_module: true
+  gnn_blocks:
+  - 0
+  - 1
+  global_module_blocks:
+  - 2
+  global_module:
+    type: attention
+    params:
+      attention_type: transformer
+      num_heads: 4
+      num_layers: 2
+      ff_dim: 256
+      dropout: 0.0
+      att_gnn_style: false
+      use_pos_encoding: false
+      use_rel_pos_bias: false
+  use_residual: true
+  use_pre_norm: true
+decoder:
+  num_layers: 3
+  dropout: 0.0
+
+loop_conditioning:
+  enabled: true
+  mode: triple_film_loop
+  num_iterations: 6
+  conditioning_dim: 64
+  use_size_input: true
+  use_outer_residual: false
+  zero_init_film: true
+size_conditioning:
+  enabled: false
+
+num_epochs: 60
+learning_rate: 0.00025
+weight_decay: 1.0e-05
+batch_size: 256
+use_size_bucketing: true
+# DEHNN graphs are ~2x denser than v5 (avg deg 13 vs 6.5) and the K=6 loop unroll backprops through
+# 6x the GNN activations, so the per-batch node budget must be well below the v5 loop configs (20000).
+max_total_nodes: 6000
+use_amp: true
+save_every: 10
+save_dir: data/chipgen/checkpoints/dehnn_finetune/loop_triple_peft_k6_dehnn
+use_scheduler: true
+
+dataset:
+  type: pickle
+  train_dir: data/chipgen/dehnn_mlcad_split/train
+  val_dir: data/chipgen/dehnn_mlcad_split/val
+  # train_files / val_files omitted -> glob every *.pickle in the dir (design-level split).
+  node_features:
+  - w_norm_d
+  - h_norm_d
+  - w_log_rel
+  - h_log_rel
+  - aspect_ratio_norm
+  - area_norm
+  - chip_size
+  - log_deg
+  - pin_count
+  - type_indicators
+  - canvas_aspect_ratio
+  - port_loc
+  zero_edge_attr: false
+  normalize_edge_attr_with_coordinates: true
+  min_graph_size: 50
+  max_graph_size: 4000
+  max_train_samples: 10000
+  train_subsample_strategy: uniform
+  train_subsample_shuffle: true
+  train_subsample_seed: 42
+  max_val_samples: 1000

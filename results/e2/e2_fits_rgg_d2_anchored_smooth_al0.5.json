@@ -1,0 +1,7 @@
+{
+ "0.5": {
+  "slope": -0.15894751123104794,
+  "intercept": 9.41429892808523,
+  "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+ }
+}

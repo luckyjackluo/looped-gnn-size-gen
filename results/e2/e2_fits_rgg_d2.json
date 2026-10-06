@@ -1,0 +1,22 @@
+{
+ "0.5": {
+  "slope": -0.09339257617425231,
+  "intercept": 7.835988571266336,
+  "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+ },
+ "0.3": {
+  "slope": 0.665046830794007,
+  "intercept": 20.057022451114413,
+  "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+ },
+ "0.15": {
+  "slope": 0.7233421360134049,
+  "intercept": 22.337217798350377,
+  "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+ },
+ "0.05": {
+  "slope": 0.36167106800670373,
+  "intercept": 21.835275565841844,
+  "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+ }
+}

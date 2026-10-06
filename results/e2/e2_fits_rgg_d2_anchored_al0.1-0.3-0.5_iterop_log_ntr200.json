@@ -1,0 +1,27 @@
+{
+ "fits": {
+  "0.1": {
+   "slope": 0.38863536812932975,
+   "intercept": 5.4235245371285865,
+   "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+  },
+  "0.3": {
+   "slope": -0.3033757627873039,
+   "intercept": 7.111586448060767,
+   "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+  },
+  "0.5": {
+   "slope": 0.062261717449501736,
+   "intercept": 4.887118730266881,
+   "theory_note": "slope ~ 1/(2|log rho_eff|) envelope"
+  }
+ },
+ "T_star": {
+  "500": 6,
+  "1000": 7,
+  "2000": 7,
+  "5000": 8,
+  "10000": 9,
+  "20000": 9
+ }
+}

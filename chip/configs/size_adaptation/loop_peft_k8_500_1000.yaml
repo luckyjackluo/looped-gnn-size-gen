@@ -1,0 +1,130 @@
+## K = 8 variant of loop_peft_k6_500_1000: same size-adaptation setup and
+## same frozen-pretrained loop-PEFT recipe, with deeper unroll only.
+## This keeps the experiment aligned with the K=4 and K=6 controls:
+##   - same train range: N = 500..1000
+##   - same trainable components: loop_conditioner + decoder
+##   - same optimizer / scheduler / batch-size setup
+##   - same validation shard: packing_alg_n1000_batch000
+## Only the loop depth changes: num_iterations 6 -> 8.
+task: regression
+hidden_dim: 256
+output_dim: 2
+enforce_gnn_then_global: true
+conditioning_coords: ports_only
+loss_type: mse
+checkpoint: data/chipgen/checkpoints/size_adaptation/pretrain_baseline_0_500/best_model.pt
+reset_epochs_on_checkpoint: true
+force_decoder_trainable_on_finetune: false
+trainable_components:
+- loop_conditioner
+- decoder
+encoder:
+  type: mlp
+  input_dim: auto
+  coord_encoding_mode: raw
+  use_coord_fourier: false
+  use_pos_encoding: false
+  num_layers: 3
+  dropout: 0.0
+  use_layer_norm: true
+processor:
+  type: gnn
+  num_blocks: 3
+  layers_per_block: 3
+  layer_configs:
+  - layer_type: gatv2
+    heads: 4
+  - layer_type: gatv2
+    heads: 4
+  - layer_type: gatv2
+    heads: 4
+    concat: false
+  edge_dim: 4
+  dropout: 0.0
+  use_global_module: true
+  gnn_blocks:
+  - 0
+  - 1
+  global_module_blocks:
+  - 2
+  global_module:
+    type: attention
+    params:
+      attention_type: transformer
+      num_heads: 4
+      num_layers: 2
+      ff_dim: 256
+      dropout: 0.0
+      att_gnn_style: false
+      use_pos_encoding: false
+      use_rel_pos_bias: false
+  use_residual: true
+  use_pre_norm: true
+decoder:
+  num_layers: 3
+  dropout: 0.0
+loop_conditioning:
+  enabled: true
+  mode: film_loop
+  num_iterations: 8
+  conditioning_dim: 64
+  use_size_input: true
+  use_outer_residual: false
+  zero_init_film: true
+size_conditioning:
+  enabled: false
+num_epochs: 100
+learning_rate: 0.00025
+weight_decay: 1.0e-05
+batch_size: 512
+use_size_bucketing: true
+max_total_nodes: 20000
+use_amp: true
+save_every: 10
+save_dir: data/chipgen/checkpoints/size_adaptation/loop_peft_k8_500_1000
+use_scheduler: true
+dataset:
+  type: pickle
+  train_dir: data/chipgen/raw/training_packing_alg
+  val_dir: data/chipgen/raw/training_packing_alg
+  node_features:
+  - w_norm_d
+  - h_norm_d
+  - w_log_rel
+  - h_log_rel
+  - aspect_ratio_norm
+  - area_norm
+  - chip_size
+  - log_deg
+  - pin_count
+  - type_indicators
+  - canvas_aspect_ratio
+  - port_loc
+  zero_edge_attr: false
+  normalize_edge_attr_with_coordinates: true
+  min_graph_size: 500
+  max_graph_size: 1000
+  train_files:
+  - packing_alg_n500_batch000.pickle
+  - packing_alg_n500_batch001.pickle
+  - packing_alg_n500_batch002.pickle
+  - packing_alg_n500_batch003.pickle
+  - packing_alg_n500_batch004.pickle
+  - packing_alg_n500_batch005.pickle
+  - packing_alg_n550_batch000.pickle
+  - packing_alg_n600_batch000.pickle
+  - packing_alg_n650_batch000.pickle
+  - packing_alg_n700_batch000.pickle
+  - packing_alg_n750_batch000.pickle
+  - packing_alg_n800_batch000.pickle
+  - packing_alg_n850_batch000.pickle
+  - packing_alg_n900_batch000.pickle
+  - packing_alg_n950_batch000.pickle
+  - data/chipgen/raw/training_packing_alg_large/packing_alg_n1000_batch000.pickle
+  val_files:
+  - packing_alg_n1000_batch000.pickle
+  max_train_samples: 5000
+  train_subsample_strategy: uniform
+  train_subsample_shuffle: true
+  train_subsample_seed: 42
+  max_val_samples: null

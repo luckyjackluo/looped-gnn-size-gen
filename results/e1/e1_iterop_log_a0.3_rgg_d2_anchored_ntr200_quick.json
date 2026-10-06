@@ -1,0 +1,69 @@
+{
+ "args": {
+  "task": "iterop_log_a0.3",
+  "family": "rgg_d2",
+  "seeds": 1,
+  "quick": true,
+  "hidden_dim": 128,
+  "k_fix": 5,
+  "k_train_max": 8,
+  "anchored": true,
+  "adapt_graphs_override": null,
+  "seed_offset": 0,
+  "n_adapt": 500,
+  "n_train": 200,
+  "device": "cuda",
+  "pretrain_epochs": 30,
+  "adapt_epochs": 20,
+  "graphs_per_size": 15,
+  "adapt_graphs": 40,
+  "ood_graphs": 5
+ },
+ "rho_eff": 0.7,
+ "runs": [
+  {
+   "seed": 0,
+   "k_adapt": 6,
+   "d_R": 265857,
+   "d_phi": 9664,
+   "risk": {
+    "1000": {
+     "K_rule": 7,
+     "K_sel": {
+      "tier1": 6,
+      "ft": 4,
+      "fs": 4
+     },
+     "tier1": 0.0059350376533331235,
+     "ft": 0.005287501774289734,
+     "fs": 0.00551842472347153,
+     "tier0": 0.0053155150350961385
+    },
+    "2000": {
+     "K_rule": 7,
+     "K_sel": {
+      "tier1": 6,
+      "ft": 4,
+      "fs": 4
+     },
+     "tier1": 0.006664571330774968,
+     "ft": 0.005893635070903017,
+     "fs": 0.006161372505839746,
+     "tier0": 0.005939786518039416
+    },
+    "5000": {
+     "K_rule": 8,
+     "K_sel": {
+      "tier1": 6,
+      "ft": 4,
+      "fs": 4
+     },
+     "tier1": 0.005702849554693764,
+     "ft": 0.0051452191169450235,
+     "fs": 0.00532299838537012,
+     "tier0": 0.005097135987078524
+    }
+   }
+  }
+ ]
+}
